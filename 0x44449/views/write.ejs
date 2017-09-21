@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>0x449</title>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- SimpleMDE (Markdown editor) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <!-- showdownjs (Markdown parser) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.4/showdown.min.js"></script>
+    <!-- highlightjs (code highlight) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+
+    <script>
+        hljs.initHighlightingOnLoad();
+
+        $(function() {
+            var deferredRenderer = null;
+            var renderPreview = function() {
+                var md = editor.value();
+                var html = converter.makeHtml(md);
+                $('#preview_area').html(html);
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+                deferredRenderer = null;
+            }
+
+            var converter = new showdown.Converter();
+            var editor = new SimpleMDE({
+                element: $("#editor")[0]
+            });
+            editor.codemirror.on('change', function() {
+                if (deferredRenderer === null) {
+                    deferredRenderer = setTimeout(renderPreview, 1000);
+                }
+            });
+        });
+
+        $(document).bind('paste', function(e) {
+            var clipboardData = e.originalEvent.clipboardData || window.clipboardData;
+            var data = clipboardData.getData('Text');
+            console.log(data);
+        });
+    </script>
+</head>
+<body>
+    <div style="height: 150px; width: 100%;">
+
+    </div>
+    <div>
+        <div style="float: left; width: 50%;">
+            <textarea name="editor" id="editor"></textarea>
+        </div>
+        <div style="float: left; width: 50%;">
+            <div id="preview_area"></div>
+        </div>
+    </div>
+</body>
+</html>

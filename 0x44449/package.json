@@ -1,0 +1,23 @@
+{
+  "name": "0x44449",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "description": "0x44449",
+  "author": {
+    "name": "zina"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "cookie-parser": "^1.4.3",
+    "debug": "^3.0.1",
+    "express": "^4.15.4",
+    "jade": "^1.11.0",
+    "morgan": "^1.8.2",
+    "serve-favicon": "^2.4.4",
+    "stylus": "^0.54.5",
+    "ejs": "latest"
+  }
+}

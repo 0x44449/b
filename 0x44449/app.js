@@ -9,6 +9,7 @@ var session = require('express-session');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var write = require('./routes/write');
+var login = require('./routes/login');
 
 var app = express();
 
@@ -41,6 +42,14 @@ app.use(session(sess))
 app.use('/', routes);
 app.use('/users', users);
 app.use('/write', write);
+app.use('/login', login);
+app.get('/logout', function (req, res) {
+    if (req.session) {
+        req.session.destroy();
+        res.clearCookie('sid');
+    }
+    res.redirect('back');
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

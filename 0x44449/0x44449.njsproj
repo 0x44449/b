@@ -35,6 +35,7 @@
     <Compile Include="entities\auth.js" />
     <Compile Include="routes\article.js" />
     <Compile Include="routes\index.js" />
+    <Compile Include="routes\login.js" />
     <Compile Include="routes\users.js" />
     <Compile Include="bin\www" />
     <Compile Include="routes\write.js" />
@@ -45,6 +46,7 @@
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />
     <Content Include="views\error.jade" />
+    <Content Include="views\login.ejs" />
     <Content Include="views\write.ejs" />
   </ItemGroup>
   <ItemGroup>

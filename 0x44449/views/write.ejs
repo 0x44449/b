@@ -56,7 +56,9 @@
                     url: '/api/article/add',
                     data: JSON.stringify(article),
                     contentType: "application/json; charset=utf-8",
-                    dataType: 'json'
+                    xhrFields: {
+                        withCredentials: true
+                    }
                 })
                 .done(function(resp) {
 

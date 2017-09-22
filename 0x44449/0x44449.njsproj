@@ -31,6 +31,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="entities\article.js" />
+    <Compile Include="entities\auth.js" />
     <Compile Include="routes\article.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\users.js" />
@@ -47,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
+    <Folder Include="entities\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />

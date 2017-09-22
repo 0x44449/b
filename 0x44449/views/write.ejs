@@ -40,6 +40,31 @@
                     deferredRenderer = setTimeout(renderPreview, 1000);
                 }
             });
+
+            $('#btn_submit').on('click', function(e) {
+                var md = editor.value();
+                var title = $('#inp_title').val();
+                var tags = $('#inp_tags').val();
+
+                var article = {
+                    title: title,
+                    content: md,
+                    tags: tags
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/article/add',
+                    data: JSON.stringify(article),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: 'json'
+                })
+                .done(function(resp) {
+
+                })
+                .fail(function(xhr, status) {
+
+                });
+            });
         });
 
         $(document).bind('paste', function(e) {
@@ -50,12 +75,17 @@
     </script>
 </head>
 <body>
+    <div style="height: 50px; width: 100%;">
+        <button>submit</button>
+    </div>
     <div style="height: 150px; width: 100%;">
 
     </div>
     <div>
         <div style="float: left; width: 50%;">
+            <input id="inp_title" type="text" style="width: 100%;" value="" />
             <textarea name="editor" id="editor"></textarea>
+            <input id="inp_tags" type="text" style="width: 100%;" value="" />
         </div>
         <div style="float: left; width: 50%;">
             <div id="preview_area"></div>

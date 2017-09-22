@@ -13,11 +13,12 @@
     "body-parser": "^1.18.1",
     "cookie-parser": "^1.4.3",
     "debug": "^3.0.1",
+    "ejs": "latest",
     "express": "^4.15.4",
+    "express-session": "^1.15.5",
     "jade": "^1.11.0",
     "morgan": "^1.8.2",
     "serve-favicon": "^2.4.4",
-    "stylus": "^0.54.5",
-    "ejs": "latest"
+    "stylus": "^0.54.5"
   }
 }

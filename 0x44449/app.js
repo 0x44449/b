@@ -48,7 +48,7 @@ app.get('/logout', function (req, res) {
         req.session.destroy();
         res.clearCookie('sid');
     }
-    res.redirect('back');
+    res.redirect('/');
 });
 
 // catch 404 and forward to error handler

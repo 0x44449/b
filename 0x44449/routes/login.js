@@ -1,5 +1,6 @@
 ﻿var express = require('express');
 var router = express.Router();
+var config = require('config');
 
 router.get('/', function (req, res) {
     res.render('login');
@@ -8,7 +9,8 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     var id = req.body.id;
     var password = req.body.password;
-    if (id === '0x44449' && password === '83gnsl!)') {
+
+    if (id === config.get('auth.id') && password === config.get('auth.password')) {
         req.session.isAdmin = true;
         res.redirect('back');
     }

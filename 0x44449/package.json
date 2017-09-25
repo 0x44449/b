@@ -10,12 +10,14 @@
     "name": "zina"
   },
   "dependencies": {
-    "body-parser": "^1.18.1",
+    "body-parser": "^1.18.2",
+    "config": "^1.26.2",
     "cookie-parser": "^1.4.3",
     "debug": "^3.0.1",
-    "ejs": "latest",
+    "ejs": "^2.5.7",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
+    "iconv-lite": "^0.4.19",
     "jade": "^1.11.0",
     "morgan": "^1.8.2",
     "serve-favicon": "^2.4.4",

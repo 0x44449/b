@@ -1,0 +1,71 @@
+﻿.left_panel {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    width: 260px;
+    box-sizing: border-box;
+
+    /*background-color: #EDE7F6;*/
+    border-right: 1px solid #D1C4E9;
+}
+
+.left_banner {
+    padding: 15px;
+    border-bottom: 1px solid #D1C4E9;
+    text-align: center;
+}
+
+.left_banner .linker {
+    text-decoration: none;
+}
+
+.left_banner .favicon {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-image: url(/favicon.ico);
+    background-size: cover;
+}
+
+.left_banner .linker_txt {
+    font-family: Consolas;
+    color: #000;
+    font-size: 40px;
+    vertical-align: bottom;
+    font-weight: bold;
+}
+
+.left_banner .linker_txt:hover {
+    color: #673AB7;
+}
+
+/*.left_contents {
+    background-color: #9575CD;
+    height: 100%;
+    width: 100%;
+}*/
+
+.right_panel {
+    float: left;
+    box-sizing: border-box;
+    padding-left: 260px;
+    width: 100%;
+}
+
+.right_area {
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.profile_img {
+    margin: 0 auto;
+    margin-top: 50px;
+    height: 90px;
+    width: 90px;
+    border-radius: 70px;
+
+    /*background-color: red;*/
+    background-image: url(/profile.png);
+    background-size: cover;
+}

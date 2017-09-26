@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title><%= base.title %></title>
+</head>
+<body>
+    <% posts.forEach(function(post) { %>
+    <div>
+        <a href="/post/<%= post.permalink %>"><span><%= post.title %></span></a>
+    </div>
+    <div>
+        <span><%= dateformat(post.created, 'yyyy년 mm월 dd일') %></span>
+    </div>
+    <div>
+        <span><%= dateformat(post.modified, 'yyyy년 mm월 dd일') %></span>
+    </div>
+    <div><%= post.contents %></div>
+    <% }); %>
+</body>
+</html>

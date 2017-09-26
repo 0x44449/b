@@ -31,27 +31,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
-    <Compile Include="entities\article.js" />
-    <Compile Include="routes\article.js" />
-    <Compile Include="routes\index.js" />
-    <Compile Include="routes\login.js" />
-    <Compile Include="routes\users.js" />
+    <Compile Include="entities\model.js" />
+    <Compile Include="models\database.js" />
+    <Compile Include="models\post-model.js" />
+    <Compile Include="routes\page.js" />
     <Compile Include="bin\www" />
-    <Compile Include="routes\write.js" />
+    <Compile Include="routes\api.js" />
+    <Content Include="config\readme.md" />
     <Content Include="package.json" />
-    <Content Include="public\stylesheets\style.styl" />
+    <Content Include="public\favicon.ico" />
     <Content Include="README.md" />
     <Content Include="typings.json" />
-    <Content Include="views\index.jade" />
-    <Content Include="views\layout.jade" />
-    <Content Include="views\error.jade" />
+    <Content Include="views\post.ejs" />
+    <Content Include="views\index.ejs" />
     <Content Include="views\login.ejs" />
     <Content Include="views\write.ejs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
-    <Folder Include="entities\" />
     <Folder Include="config\" />
+    <Folder Include="models\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />

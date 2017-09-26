@@ -12,7 +12,7 @@ router.post('/api/post/add', function(req, res, next) {
     }
 }, async function(req, res) {
     var post = req.body;
-    post.id = uuidv4();
+    post.id = uuidv4().toLowerCase();
     post.author = req.session.user;
     post.created = new Date();
     post.modified = new Date();
@@ -33,7 +33,7 @@ router.post('/api/post/add', function(req, res, next) {
     }
 });
 
-router.post('/api/post/remove', function(req, res, next) {
+router.post('/api/post/delete', function(req, res, next) {
     if (!req.session || !req.session.admin) {
         res.sendStatus(401);
     }

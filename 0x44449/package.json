@@ -23,6 +23,7 @@
     "mysql2": "^1.4.2",
     "sequelize": "^4.11.0",
     "serve-favicon": "^2.4.4",
+    "showdown": "^1.7.4",
     "uuid": "^3.1.0"
   }
 }

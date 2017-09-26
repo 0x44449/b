@@ -3,14 +3,47 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title><%= base.title %></title>
+    <title><%= base.title %> - <%= post.title %></title>
 </head>
 <body>
     <div>
         <%= post.title %>
     </div>
+    <% if (admin) { %>
+    <button id="btn_delete">delete</button>
+    <button id="btn_edit">edit</button>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script>
+        $('#btn_delete').on('click', function(e) {
+            e.preventDefault();
+            var conf = confirm('Delete this post?');
+            if (conf === true) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/post/delete',
+                    data: JSON.stringify({ id: '<%= post.id %>' }),
+                    contentType: "application/json; charset=utf-8",
+                    xhrFields: {
+                        withCredentials: true
+                    }
+                })
+                .done(function(resp) {
+                    location.href = '/';
+                })
+                .fail(function(xhr, status) {
+
+                });
+            }
+        });
+        $('#btn_edit').on('click', function(e) {
+            e.preventDefault();
+            location.href = '/edit/<%= post.id %>';
+        });
+    </script>
+    <% } %>
     <div>
-        <%= post.contents %>
+        <%- contentsHtml %>
     </div>
 </body>
 </html>

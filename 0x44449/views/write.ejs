@@ -13,8 +13,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.4/showdown.min.js"></script>
     <!-- highlightjs (code highlight) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+    <script src="/javascripts/highlight.pack.js"></script>
+
+    <style>
+        .post_contents {
+            font-family: 'Malgun Gothic';
+        }
+
+        code {
+            font-family: Consolas;
+        }
+    </style>
 
     <script>
         hljs.initHighlightingOnLoad();
@@ -32,8 +41,19 @@
             }
 
             var converter = new showdown.Converter();
+            converter.setFlavor('github');
+            converter.setOption('tables', true);
+
             var editor = new SimpleMDE({
-                element: $("#editor")[0]
+                element: $("#editor")[0],
+                previewRender: function(plainText, preview) {
+                    //setTimeout(function() {
+                    //    preview.innerHTML = converter.makeHtml(plainText);
+                    //}, 1000);
+                    //return "Loading...";
+
+                    return converter.makeHtml(plainText);
+                }
             });
             editor.codemirror.on('change', function() {
                 if (deferredRenderer === null) {
@@ -94,7 +114,7 @@
             <input id="inp_tags" type="text" style="width: 100%;" value="" />
         </div>
         <div style="float: left; width: 50%;">
-            <div id="preview_area"></div>
+            <div id="preview_area" class="post_contents"></div>
         </div>
         <div style="clear: both;"></div>
     </div>

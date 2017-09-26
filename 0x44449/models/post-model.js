@@ -2,13 +2,9 @@
 var Sequelize = require('sequelize');
 
 var post = database.define('post', {
-    seq: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
     id: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        primaryKey: true
     },
     category: {
         type: Sequelize.STRING

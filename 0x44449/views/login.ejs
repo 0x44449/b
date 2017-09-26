@@ -4,18 +4,80 @@
 <head>
     <meta charset="utf-8" />
     <title><%= base.title %></title>
+    <style>
+        form {
+            box-sizing: border-box;
+            width: 400px;
+            margin: 0 auto 0;
+            /*box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);*/
+            /*padding-bottom: 40px;*/
+            /*border-radius: 3px;*/
+            border: 1px solid #D1C4E9;
+            padding: 20px;
+        }
+
+        .input_area {
+            padding: 10px;
+            padding-bottom: 30px;
+        }
+
+        input.input {
+            padding: 10px 0;
+            font-size: 18px;
+            border: none;
+            border-bottom: 1px solid #9575CD;
+            width: 100%;
+            color: #673AB7;
+        }
+
+        input.input:focus {
+            outline: none;
+            box-shadow: none;
+            border-bottom: 2px solid #512DA8;
+        }
+
+        input.input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
+            color: #D1C4E9;
+        }
+
+        .button_area {
+            padding: 10px;
+        }
+
+        input.submit {
+            font-size: 18px;
+            width: 100%;
+            padding: 10px 0;
+            border: 1px solid #9575CD;
+            background-color: #9575CD;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        input.submit:hover {
+            border: 1px solid #673AB7;
+            background-color: #673AB7;
+        }
+        
+        input.submit:focus {
+            outline: none;
+            box-shadow: none;
+            border: 1px solid #673AB7;
+            background-color: #673AB7;
+        }
+    </style>
 </head>
 <body>
     <form action="/login" method="post">
-        <div>
-            <span>id: </span>
-            <input type="text" name="id" value="" />
+        <div class="input_area">
+            <input class="input" placeholder="id" type="text" name="id" value="" autofocus />
         </div>
-        <div>
-            <span>password: </span>
-            <input type="text" name="password" value="" />
+        <div class="input_area">
+            <input class="input" placeholder="password" type="password" name="password" value="" />
         </div>
-        <input type="submit" value="Submit" />
+        <div class="button_area">
+            <input class="submit" type="submit" value="Submit" />
+        </div>
     </form>
 </body>
 </html>

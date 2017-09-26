@@ -3,6 +3,8 @@ var router = express.Router();
 var config = require('config');
 var postModel = require('../models/post-model');
 var showdown = require('showdown');
+showdown.setFlavor('github');
+showdown.setOption('tables', true);
 
 var baseViewModel = {
     base: {

@@ -4,19 +4,93 @@
 <head>
     <meta charset="utf-8" />
     <title><%= base.title %></title>
+    <link rel="stylesheet" href="/stylesheets/common.css">
+
+    <style>
+        .post_block {
+            font-family: 'Malgun Gothic';
+        }
+
+        .post_title_link {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .post_title_link:hover {
+            color: #673AB7;
+        }
+
+        .post_title_link_txt {
+            margin-bottom: 0;
+            font-family: 'Malgun Gothic';
+        }
+
+        .date_area {
+            display: inline-block;
+        }
+
+        .post_date {
+            color: #9575CD;
+            font-size: 12px;
+        }
+    </style>
 </head>
 <body>
-    <% posts.forEach(function(post) { %>
-    <div>
-        <a href="/post/<%= post.permalink %>"><span><%= post.title %></span></a>
+    <div class="left_panel">
+        <%- include('left') %>
     </div>
-    <div>
-        <span><%= dateformat(post.created, 'yyyy년 mm월 dd일') %></span>
+    <div class="right_panel">
+        <div class="right_area">
+            <% posts.forEach(function(post) { %>
+            <div class="post_block">
+                <div>
+                    <a class="post_title_link" href="/post/<%= post.permalink %>">
+                        <h1 class="post_title_link_txt"><%= post.title %></h1>
+                    </a>
+                </div>
+                <div class="date_area">
+                    <span class="post_date">c: <%= dateformat(post.created, 'yyyy.mm.dd') %></span>
+                    <span class="post_date">/</span>
+                    <span class="post_date">m: <%= dateformat(post.modified, 'yyyy.mm.dd') %></span>
+                </div>
+                <% if (admin) { %>
+                <div>
+                    <button id="btn_delete_<%= post.id %>">delete</button>
+                    <button id="btn_edit_<%= post.id %>">edit</button>
+                    <!-- jQuery -->
+                    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+                    <script>
+                        $('#btn_delete_<%= post.id %>').on('click', function(e) {
+                            e.preventDefault();
+                            var conf = confirm('Delete this post?');
+                            if (conf === true) {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/api/post/delete',
+                                    data: JSON.stringify({ id: '<%= post.id %>' }),
+                                contentType: "application/json; charset=utf-8",
+                                xhrFields: {
+                                    withCredentials: true
+                                }
+                            })
+                            .done(function(resp) {
+                                location.href = '/';
+                            })
+                            .fail(function(xhr, status) {
+
+                            });
+                            }
+                        });
+                        $('#btn_edit_<%= post.id %>').on('click', function(e) {
+                            e.preventDefault();
+                            location.href = '/edit/<%= post.id %>';
+                        });
+                    </script>
+                </div>
+                <% } %>
+            </div>
+            <% }); %>
+        </div>
     </div>
-    <div>
-        <span><%= dateformat(post.modified, 'yyyy년 mm월 dd일') %></span>
-    </div>
-    <div><%= post.contents %></div>
-    <% }); %>
 </body>
 </html>

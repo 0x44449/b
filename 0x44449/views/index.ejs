@@ -5,96 +5,72 @@
     <meta charset="utf-8" />
     <title><%= base.title %></title>
     <link rel="stylesheet" href="/stylesheets/common.css">
-
-    <style>
-        .post_block {
-            font-family: 'Malgun Gothic';
-            margin: 10px 30px;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid black;
-        }
-
-        .post_title_link {
-            text-decoration: none;
-            color: #000;
-        }
-
-        .post_title_link:hover {
-            color: #673AB7;
-        }
-
-        .post_title_link_txt {
-            margin-top: 5px;
-            margin-bottom: 0;
-            font-family: 'Malgun Gothic';
-        }
-
-        .date_area {
-            display: inline-block;
-        }
-
-        .post_date {
-            color: #9575CD;
-            font-size: 12px;
-        }
-    </style>
 </head>
 <body>
-    <div class="left_panel bk_dotted">
-        <%- include('left') %>
-    </div>
-    <div class="right_panel fl_clear">
-        <div class="right_area">
-            <% posts.forEach(function(post) { %>
-            <div class="post_block">
-                <div>
-                    <a class="post_title_link" href="/post/<%= post.permalink %>">
-                        <h1 class="post_title_link_txt"><%= post.title %></h1>
+    <div class="site-wrap">
+        <div class="top-sticky-box lay-box-center">
+            <div class="top-box-wrap">
+                <div class="box" style="width: 65px;">
+                    <a href="">
+                        <div class="site-link-wrap">
+                            <div class="site-link-mark">
+                                <div class="site-link-mark-inner"></div>
+                            </div>
+                        </div>
                     </a>
                 </div>
-                <div class="date_area">
-                    <span class="post_date">c: <%= dateformat(post.created, 'yyyy.mm.dd') %></span>
-                    <span class="post_date">/</span>
-                    <span class="post_date">m: <%= dateformat(post.modified, 'yyyy.mm.dd') %></span>
+                <div class="box" style="width: calc(100% - 130px);">
+                    <div style="height: 100%; display: flex; align-items: center; padding: 10px; box-sizing: border-box;">
+                        <span style="color: #606060; font-size: 20px; font-weight: bold; vertical-align: middle;">b.0x44449</span>
+                    </div>
                 </div>
-                <% if (admin) { %>
-                <div>
-                    <button id="btn_delete_<%= post.id %>">delete</button>
-                    <button id="btn_edit_<%= post.id %>">edit</button>
-                    <!-- jQuery -->
-                    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-                    <script>
-                        $('#btn_delete_<%= post.id %>').on('click', function(e) {
-                            e.preventDefault();
-                            var conf = confirm('Delete this post?');
-                            if (conf === true) {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/api/post/delete',
-                                    data: JSON.stringify({ id: '<%= post.id %>' }),
-                                contentType: "application/json; charset=utf-8",
-                                xhrFields: {
-                                    withCredentials: true
-                                }
-                            })
-                            .done(function(resp) {
-                                location.href = '/';
-                            })
-                            .fail(function(xhr, status) {
-
-                            });
-                            }
-                        });
-                        $('#btn_edit_<%= post.id %>').on('click', function(e) {
-                            e.preventDefault();
-                            location.href = '/edit/<%= post.id %>';
-                        });
-                    </script>
+                <div class="box" style="width: 65px;">
+                    <div class="site-item-wrap">
+                        <div class="site-item-bar"></div>
+                        <div class="site-item-bar"></div>
+                        <div class="site-item-bar"></div>
+                    </div>
                 </div>
-                <% } %>
             </div>
-            <% }); %>
+        </div>
+
+        <div class="contents-flex-box lay-box-center">
+            <div class="box left-side u-bk-dotted">
+                <div class="lay_left"></div>
+            </div>
+            <div class="box contens-box">
+                <div class="lay_contents">
+                    <% posts.forEach(function(post) { %>
+                    <div class="index-post-box">
+                        <a href="/post/<%= post.permalink %>">
+                            <div class="index-post-wrap">
+                                <div class="index-post-preview"></div>
+                                <div class="index-post-info">
+                                    <div>
+                                        <span class="index-post-title"><%= post.title %></span>
+                                    </div>
+                                    <div>
+                                        <span class="index-post-date">created: <%= dateformat(post.created, 'yyyy.mm.dd') %></span>
+                                    </div>
+                                    <div>
+                                        <span class="index-post-date">modified: <%= dateformat(post.modified, 'yyyy.mm.dd') %></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+            <div class="box right-side u-bk-dotted">
+                <div class="lay_right"></div>
+            </div>
+        </div>
+
+        <div class="footer-box lay-box-center">
+            <div class="footer-box-wrap">
+                <span class="footer-powered">powered by @0x44449</span>
+            </div>
         </div>
     </div>
 </body>

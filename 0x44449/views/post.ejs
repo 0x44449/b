@@ -14,98 +14,66 @@
     <script>
         hljs.initHighlightingOnLoad();
     </script>
-
-    <style>
-        .post_title {
-            /*color: #673AB7;*/
-            margin-bottom: 5px;
-            font-size: 3em;
-            font-family: 'Malgun Gothic';
-        }
-
-        .post_title_area {
-            /*border-bottom: 1px solid #673AB7;*/
-            border-bottom: 1px solid black;
-        }
-
-        .information_area {
-            text-align: right;
-            font-family: 'Malgun Gothic';
-        }
-
-        .date_area {
-            display: inline-block;
-        }
-
-        .post_date {
-            color: #9575CD;
-            font-size: 12px;
-        }
-
-        .post_contents {
-            font-family: 'Malgun Gothic';
-        }
-
-        .post_contents code {
-            font-family: Consolas;
-        }
-    </style>
 </head>
 <body>
-    <div class="left_panel">
-        <%- include('left') %>
-    </div>
-    <div class="right_panel fl_clear">
-        <div class="right_area">
-            <div class="post_title_area">
-                <h1 class="post_title"><%= post.title %></h1>
-            </div>
-            <div class="information_area">
-                <div class="date_area">
-                    <span class="post_date">c: <%= dateformat(post.created, 'yyyy.mm.dd') %></span>
+    <div class="site-wrap">
+        <div class="top-sticky-box lay-box-center">
+            <div class="top-box-wrap">
+                <div class="box" style="width: 65px;">
+                    <a href="/">
+                        <div class="site-link-wrap">
+                            <div class="site-link-mark">
+                                <div class="site-link-mark-inner"></div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <span class="post_date">/</span>
-                <div class="date_area">
-                    <span class="post_date">m: <%= dateformat(post.modified, 'yyyy.mm.dd') %></span>
+                <div class="box" style="width: calc(100% - 130px);">
+                    <div style="height: 100%; display: flex; align-items: center; padding: 10px; box-sizing: border-box;">
+                        <span style="color: #606060; font-size: 20px; font-weight: bold; vertical-align: middle;">b.0x44449</span>
+                    </div>
+                </div>
+                <div class="box" style="width: 65px;">
+                    <div class="site-item-wrap">
+                        <div class="site-item-bar"></div>
+                        <div class="site-item-bar"></div>
+                        <div class="site-item-bar"></div>
+                    </div>
                 </div>
             </div>
-            <% if (admin) { %>
-            <div>
-                <button id="btn_delete">delete</button>
-                <button id="btn_edit">edit</button>
-                <!-- jQuery -->
-                <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-                <script>
-                    $('#btn_delete').on('click', function(e) {
-                        e.preventDefault();
-                        var conf = confirm('Delete this post?');
-                        if (conf === true) {
-                            $.ajax({
-                                type: 'POST',
-                                url: '/api/post/delete',
-                                data: JSON.stringify({ id: '<%= post.id %>' }),
-                            contentType: "application/json; charset=utf-8",
-                            xhrFields: {
-                                withCredentials: true
-                            }
-                        })
-                    .done(function(resp) {
-                        location.href = '/';
-                    })
-                    .fail(function(xhr, status) {
+        </div>
 
-                    });
-                    }
-                });
-                $('#btn_edit').on('click', function(e) {
-                    e.preventDefault();
-                    location.href = '/edit/<%= post.id %>';
-            });
-                </script>
+        <div class="contents-flex-box lay-box-center">
+            <div class="box left-side u-bk-dotted">
+                <div class="lay_left"></div>
             </div>
-            <% } %>
-            <div class="post_contents">
-                <%- contentsHtml %>
+            <div class="box contens-box">
+                <div class="lay_contents">
+                    <div class="post-info-box">
+                        <div>
+                            <span class="post-title"><%= post.title %></span>
+                        </div>
+                        <div>
+                            <span class="post-date">created: <%= dateformat(post.created, 'yyyy.mm.dd') %></span>
+                        </div>
+                        <div>
+                            <span class="post-date">modified: <%= dateformat(post.modified, 'yyyy.mm.dd') %></span>
+                        </div>
+                    </div>
+
+                    <div class="post-contents">
+                        <%- contentsHtml %>
+                    </div>
+                </div>
+            </div>
+            <div class="box right-side u-bk-dotted">
+                <div class="lay_right"></div>
+            </div>
+        </div>
+
+        <div class="footer-box lay-box-center">
+            <div class="footer-box-wrap">
+                <span class="footer-powered">powered by @0x44449</span>
             </div>
         </div>
     </div>

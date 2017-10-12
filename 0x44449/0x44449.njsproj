@@ -31,25 +31,34 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
-    <Compile Include="entities\model.js" />
     <Compile Include="models\database.js" />
     <Compile Include="models\post-model.js" />
+    <Compile Include="public\javascripts\edit.js" />
+    <Compile Include="public\javascripts\highlight.pack.js" />
+    <Compile Include="public\javascripts\write.js" />
     <Compile Include="routes\page.js" />
     <Compile Include="bin\www" />
     <Compile Include="routes\api.js" />
     <Content Include="config\readme.md" />
+    <Content Include="design\index.html" />
+    <Content Include="design\main.css" />
     <Content Include="package.json" />
     <Content Include="public\favicon.ico" />
+    <Content Include="public\stylesheets\common.css" />
     <Content Include="README.md" />
     <Content Include="typings.json" />
+    <Content Include="views\edit.ejs" />
+    <Content Include="views\left.ejs" />
     <Content Include="views\post.ejs" />
     <Content Include="views\index.ejs" />
     <Content Include="views\login.ejs" />
+    <Content Include="views\post2.ejs" />
     <Content Include="views\write.ejs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
     <Folder Include="config\" />
+    <Folder Include="design\" />
     <Folder Include="models\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />

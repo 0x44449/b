@@ -8,4 +8,12 @@
     <div class="left_contents">
         <div class="profile_img"></div>
     </div>
+    <% if (admin) { %>
+    <div style="text-align: center; margin: 20px;">
+        <a href="/write">Write</a>
+    </div>
+    <div style="text-align: center; margin: 20px;">
+        <a href="/logout">logout</a>
+    </div>
+    <% } %>
 </div>

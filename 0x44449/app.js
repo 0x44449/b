@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var config = require('config');
 
 var database = require('./models/database');
 var pageRoutes = require('./routes/page');
@@ -26,8 +27,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 var sess = {
-    secret: '567890asdf!@#^%$',
-    cookie: {},
+    secret: config.get('secret'),
+    cookie: {
+        //maxAge: 60 * 10000
+    }
 }
 
 if(app.get('env') === 'production') {

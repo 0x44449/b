@@ -9,6 +9,10 @@
     <style>
         .post_block {
             font-family: 'Malgun Gothic';
+            margin: 10px 30px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid black;
         }
 
         .post_title_link {
@@ -21,6 +25,7 @@
         }
 
         .post_title_link_txt {
+            margin-top: 5px;
             margin-bottom: 0;
             font-family: 'Malgun Gothic';
         }
@@ -36,10 +41,10 @@
     </style>
 </head>
 <body>
-    <div class="left_panel">
+    <div class="left_panel bk_dotted">
         <%- include('left') %>
     </div>
-    <div class="right_panel">
+    <div class="right_panel fl_clear">
         <div class="right_area">
             <% posts.forEach(function(post) { %>
             <div class="post_block">

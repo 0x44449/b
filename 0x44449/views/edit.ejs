@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <title><%= base.title %> - <% post.title %></title>
+    <link rel="stylesheet" href="/stylesheets/common.css" />
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <!-- SimpleMDE (Markdown editor) -->
@@ -16,90 +18,104 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
 
-    <script>
-        hljs.initHighlightingOnLoad();
+    <style>
+        .post_contents {
+            font-family: 'Malgun Gothic';
+        }
 
-        $(function() {
-            var deferredRenderer = null;
-            var renderPreview = function() {
-                var md = editor.value();
-                var html = converter.makeHtml(md);
-                $('#preview_area').html(html);
-                $('pre code').each(function(i, block) {
-                    hljs.highlightBlock(block);
-                });
-                deferredRenderer = null;
-            }
+        code {
+            font-family: Consolas;
+        }
+    </style>
 
-            var converter = new showdown.Converter();
-            var editor = new SimpleMDE({
-                element: $("#editor")[0]
-            });
-            editor.codemirror.on('change', function() {
-                if (deferredRenderer === null) {
-                    deferredRenderer = setTimeout(renderPreview, 1000);
-                }
-            });
+    <script src="/javascripts/edit.js"></script>
 
-            $('#btn_submit').on('click', function(e) {
-                var md = editor.value();
-                var title = $('#inp_title').val();
-                var tags = $('#inp_tags').val();
-                var permalink = $('#inp_permalink').val();
+    <style>
+        .fixed_top_panel {
+            height: 170px;
+            /*position: fixed;*/
+            position: sticky;
+            top: 0;
+            /*left: 0;*/
+            /*right: 0;*/
+            z-index: 100;
+            background-color: white;
+            box-sizing: border-box;
+            border-bottom: 1px solid black;
+            /*margin-bottom: 30px;*/
+            flex-direction: row;
+        }
 
-                var post = {
-                    title: title,
-                    contents: md,
-                    category: '',
-                    tags: tags,
-                    permalink: permalink
-                };
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/post/edit',
-                    data: JSON.stringify(post),
-                    contentType: "application/json; charset=utf-8",
-                    xhrFields: {
-                        withCredentials: true
-                    }
-                })
-                .done(function(resp) {
-                    location.href = '/';
-                })
-                .fail(function(xhr, status) {
+        .flow_bottom_panel {
+            /*margin-top: 200px;*/
+            /*margin-top: 30px;*/
+            /*z-index: 1;*/
+        }
 
-                });
-            });
-        });
+        .editor-toolbar.fullscreen {
+            /*top: 200px;*/
+            z-index: 200;
+        }
 
-        $(document).bind('paste', function(e) {
-            var clipboardData = e.originalEvent.clipboardData || window.clipboardData;
-            var data = clipboardData.getData('Text');
-            console.log(data);
-        });
-    </script>
+        .CodeMirror-fullscreen {
+            /*top: 250px;*/
+            z-index: 200;
+        }
+
+        .editor-preview-side {
+            /*top: 250px;*/
+            z-index: 200;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <div style="float: left; width: 50%;">
-            <span>Permalink:</span>
-            <input id="inp_permalink" type="text" style="width: 100%;" value="" />
+    <input id="inp_id" type="hidden" value="<%= post.id %>" />
+    <input id="inp_created" type="hidden" value="<%= post.created %>" />
+    <div class="fixed_top_panel">
+        <div style="float: left; width: calc(100% - 120px);" class="fl_clear">
+            <div style="margin: 15px;">
 
-            <span>Title:</span>
-            <input id="inp_title" type="text" style="width: 100%;" value="" />
+                <table style="width: 100%;">
+                    <colgroup>
+                        <col width="100" />
+                        <col width="" />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td>permalink</td>
+                            <td>
+                                <input type="text" value="" style="width: 100%;" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <textarea name="editor" id="editor" value="<%= post.contents %>"></textarea>
-
-            <span>Tags:</span>
-            <input id="inp_tags" type="text" style="width: 100%;" value="" />
+                <div>
+                    <span>Permalink:</span>
+                    <input id="inp_permalink" type="text" style="width: 100%;" value="<%= post.permalink %>" />
+                </div>
+                <div>
+                    <span>Title:</span>
+                    <input id="inp_title" type="text" style="width: 100%;" value="<%= post.title %>" />
+                </div>
+                <div>
+                    <span>Tags:</span>
+                    <input id="inp_tags" type="text" style="width: 100%;" value="<%= post.tags %>" />
+                </div>
+            </div>
         </div>
-        <div style="float: left; width: 50%;">
-            <div id="preview_area"></div>
+
+        <div style="float: left; width: 120px;" class="fl_clear">
+            <div style="margin: 15px;">
+                <button id="btn_submit" style="width: 100%; height: 80px;">Submit</button>
+            </div>
         </div>
-        <div style="clear: both;"></div>
     </div>
-    <div style="height: 50px; width: 100%;">
-        <button id="btn_submit">submit</button>
+
+    <div class="flow_bottom_panel">
+        <div>
+            <textarea name="editor" id="editor"><%= post.contents %></textarea>
+        </div>
     </div>
 </body>
 </html>

@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title><%= base.title %> - <%= post.title %></title>
+    <link rel="stylesheet" href="/stylesheets/common.css">
+
+    <!-- highlightjs (code highlight) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="/javascripts/highlight.pack.js"></script>
+
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+    <style>
+        .post_title {
+            /*color: #673AB7;*/
+            margin-bottom: 5px;
+            font-size: 3em;
+            font-family: 'Malgun Gothic';
+        }
+
+        .post_title_area {
+            /*border-bottom: 1px solid #673AB7;*/
+            border-bottom: 1px solid black;
+        }
+
+        .information_area {
+            text-align: right;
+            font-family: 'Malgun Gothic';
+        }
+
+        .date_area {
+            display: inline-block;
+        }
+
+        .post_date {
+            color: #9575CD;
+            font-size: 12px;
+        }
+
+        .post_contents {
+            font-family: 'Malgun Gothic';
+        }
+
+            .post_contents code {
+                font-family: Consolas;
+            }
+    </style>
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .top_nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: white;
+            min-height: 50px;
+            padding: 10px;
+            display: flex;
+            flex-flow: row;
+            box-sizing: border-box;
+            border-bottom: 1px solid black;
+        }
+
+        .post_header {
+            height: 150px;
+            padding: 30px 50px;
+            box-sizing: border-box;
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <!-- top nav -->
+    <div class="top_nav">
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+    </div>
+    <!-- post header -->
+    <div class="post_header">
+        <h1><%= post.title %></h1>
+    </div>
+    <!-- left -->
+    <div></div>
+    <!-- contents -->
+    <div>
+        <%- contentsHtml %>
+    </div>
+</body>
+</html>

@@ -48,7 +48,8 @@ a {
 
 .top-box-wrap > .box {
     height: 100%;
-    background-color: #fff;
+    /*background-color: #fff;*/
+    background-color: rgba(255, 255, 255, 0.8);
     border-left: 1px solid rgba(34,36,38,.15);
     border-right: 1px solid rgba(34,36,38,.15);
     border-bottom: 1px solid rgba(34,36,38,.15);
@@ -147,9 +148,10 @@ a {
 
 .right-side {
     width: 190px;
-    min-height: 100px;
     border-right: 1px solid rgba(34,36,38,.15);
     padding: 0;
+
+    display: none;
 }
 
 .lay_contents {
@@ -226,6 +228,10 @@ a {
     width: 100%;
 }
 
+/*.index-post-wrap > div:nth-of-type(3) {
+    width: calc(100% - 120px);
+}*/
+
 .index-post-preview {
     height: 65px;
     width: 65px;
@@ -237,6 +243,10 @@ a {
 .index-post-info {
     width: calc(100% - 80px);
     text-overflow: ellipsis;
+}
+
+.index-post-info > a:hover index-post-title {
+    font-weight: bold;
 }
 
 .index-post-title {
@@ -272,4 +282,30 @@ a {
 
 .post-contents code {
     font-family: Consolas;
+}
+
+
+.admin-index-post-delete {
+    background-color: white;
+    border: 0;
+    font-size: 14px;
+    font-family: Consolas;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin-left: 15px;
+}
+
+.admin-index-post-delete:hover {
+    border-bottom: 1px solid black;
+}
+
+.admin-index-post-edit {
+    font-size: 14px;
+    font-family: Consolas;
+    box-sizing: border-box;
+    margin-left: 15px;
+}
+
+.admin-index-post-edit:hover {
+    border-bottom: 1px solid black;
 }

@@ -5,13 +5,42 @@
     <meta charset="utf-8" />
     <title><%= base.title %></title>
     <link rel="stylesheet" href="/stylesheets/common.css">
+    <% if (admin) { %>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script>
+        $(function() {
+            $('.admin-index-post-delete').on('click', function(e) {
+                e.preventDefault();
+                var $this = $(this);
+                if (confirm('Delete this post?')) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/api/post/delete',
+                        data: JSON.stringify({ id: $this.attr('data-post') }),
+                        contentType: "application/json; charset=utf-8",
+                        xhrFields: {
+                            withCredentials: true
+                        }
+                    })
+                    .done(function() {
+                        location.href = '/'
+                    })
+                    .fail(function(xhr, status) {
+                        alert(status);
+                    });
+                }
+            });
+        });
+    </script>
+    <% } %>
 </head>
 <body>
     <div class="site-wrap">
         <div class="top-sticky-box lay-box-center">
             <div class="top-box-wrap">
                 <div class="box" style="width: 65px;">
-                    <a href="">
+                    <a href="/">
                         <div class="site-link-wrap">
                             <div class="site-link-mark">
                                 <div class="site-link-mark-inner"></div>
@@ -36,16 +65,21 @@
 
         <div class="contents-flex-box lay-box-center">
             <div class="box left-side u-bk-dotted">
-                <div class="lay_left"></div>
+                <div class="lay_left">
+                    <div style="height: 64px; width: 64px; margin: 16px auto 0 auto; background-image: url(/profile.png); background-size: cover; border-radius: 50%;"></div>
+                    <div style="text-align: center; margin: 10px 0;">
+                        <span>@0x44449</span>
+                    </div>
+                </div>
             </div>
             <div class="box contens-box">
                 <div class="lay_contents">
                     <% posts.forEach(function(post) { %>
                     <div class="index-post-box">
-                        <a href="/post/<%= post.permalink %>">
-                            <div class="index-post-wrap">
-                                <div class="index-post-preview"></div>
-                                <div class="index-post-info">
+                        <div class="index-post-wrap">
+                            <div class="index-post-preview"></div>
+                            <div class="index-post-info">
+                                <a href="/post/<%= post.permalink %>">
                                     <div>
                                         <span class="index-post-title"><%= post.title %></span>
                                     </div>
@@ -55,10 +89,16 @@
                                     <div>
                                         <span class="index-post-date">modified: <%= dateformat(post.modified, 'yyyy.mm.dd') %></span>
                                     </div>
-                                </div>
+                                </a>
                             </div>
-                        </a>
+                        </div>
                     </div>
+                    <% if (admin) { %>
+                    <div style="margin-top: 5px;">
+                        <a class="admin-index-post-delete" data-post="<%= post.id %>">delete</a>
+                        <a class="admin-index-post-edit" href="/edit/<%= post.id %>"><span>edit</span></a>
+                    </div>
+                    <% } %>
                     <% }); %>
                 </div>
             </div>

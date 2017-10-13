@@ -2,6 +2,9 @@
 var router = express.Router();
 var postModel = require('../models/post-model');
 var uuidv4 = require('uuid/v4');
+var Sequelize = require('sequelize');
+
+const Op = Sequelize.Op;
 
 router.post('/api/post/add', function(req, res, next) {
     if (!req.session || !req.session.admin) {
@@ -66,7 +69,10 @@ router.post('/api/post/edit', function(req, res, next) {
 
     var permalinkCheck = await postModel.count({
         where: {
-            permalink: post.permalink
+            permalink: post.permalink,
+            id: {
+                $not: id
+            }
         }
     });
 
@@ -79,6 +85,7 @@ router.post('/api/post/edit', function(req, res, next) {
             title: post.title,
             contents: post.contents,
             modified: new Date(),
+            permalink: post.permalink,
             tags: post.tags
         }, {
             where: {

@@ -166,6 +166,7 @@ a {
 
     .contens-box {
         width: 100%;
+        padding: 0 5px;
     }
 
     .left-side {
@@ -250,6 +251,7 @@ a {
 }
 
 .index-post-title {
+    font-weight: bold;
     font-size: 22px;
 }
 
@@ -278,6 +280,12 @@ a {
 .post-contents {
     margin: 20px 30px;
     font-family: 'Malgun Gothic';
+}
+
+@media (max-width: 1120px) {
+    .post-contents {
+        margin: 20px 20px;
+    }
 }
 
 .post-contents code {

@@ -37,7 +37,7 @@ a {
     position: sticky;
     top: 0;
     height: 65px;
-    z-index: 100000;
+    z-index: 8;
 }
 
 .top-box-wrap {

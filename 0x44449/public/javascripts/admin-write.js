@@ -6,6 +6,15 @@ function onAttachDragStart(e) {
 }
 
 $(function() {
+    var deferredRenderer = null;
+    var renderPreview = function(preview, plainText) {
+        preview.innerHTML = converter.makeHtml(plainText);
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+        deferredRenderer = null;
+    }
+
     var converter = new showdown.Converter();
     converter.setFlavor('github');
     converter.setOption('tables', true);

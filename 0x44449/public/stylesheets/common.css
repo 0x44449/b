@@ -293,6 +293,11 @@ a {
     font-family: Consolas;
 }
 
+.post-contents img {
+    margin: auto;
+    display: block;
+}
+
 
 .admin-index-post-delete {
     background-color: white;

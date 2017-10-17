@@ -23,6 +23,8 @@
     <script src="/javascripts/admin-write.js"></script>
 </head>
 <body>
+    <input id="post-id" type="hidden" value="<%= id %>" />
+
     <%- include('partial/top') %>
 
     <div class="contents-flex-box lay-box-center">
@@ -57,6 +59,12 @@
                     <div>
                         <textarea name="editor" id="editor"></textarea>
                     </div>
+                </div>
+
+                <div class="write-attach-box">
+                    <input id="btn-file-select" type="file" multiple="multiple" accept="image/*" />
+                    <input id="btn-file-upload" type="button" value="upload" />
+                    <div id="attach-list" class="write-attach-wrap"></div>
                 </div>
             </div>
         </div>

@@ -31,13 +31,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="models\attach-model.js" />
     <Compile Include="models\database.js" />
     <Compile Include="models\post-model.js" />
     <Compile Include="public\javascripts\admin-edit.js" />
     <Compile Include="public\javascripts\admin-write.js" />
-    <Compile Include="public\javascripts\edit.js" />
     <Compile Include="public\javascripts\highlight.pack.js" />
-    <Compile Include="public\javascripts\write.js" />
     <Compile Include="routes\page.js" />
     <Compile Include="bin\www" />
     <Compile Include="routes\api.js" />

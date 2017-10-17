@@ -1,8 +1,11 @@
 ﻿var express = require('express');
 var router = express.Router();
 var config = require('config');
+var uuidv4 = require('uuid/v4');
 var postModel = require('../models/post-model');
+var attachModel = require('../models/attach-model');
 var showdown = require('showdown');
+
 showdown.setFlavor('github');
 showdown.setOption('tables', true);
 
@@ -67,7 +70,9 @@ router.get('/write', function(req, res, next) {
         next();
     }
 }, function(req, res) {
-    res.render('write', viewModel());
+    res.render('write', viewModel({
+        id: uuidv4().toLowerCase()
+    }));
 });
 
 router.get('/edit/:id', function(req, res, next) {
@@ -90,8 +95,14 @@ router.get('/edit/:id', function(req, res, next) {
         res.sendStatus(404);
     }
     else {
+        var attaches = await attachModel.findAll({
+            where: {
+                id: id
+            }
+        });
         res.render('edit', viewModel({
-            post: post
+            post: post,
+            attaches: attaches
         }));
     }
 });
@@ -116,6 +127,25 @@ router.get('/post/:permalink', async function(req, res) {
             admin: (req.session && req.session.admin) ? true : false,
             dateformat: require('dateformat')
         }));
+    }
+});
+
+router.get('/attach/:id/:name', async function(req, res) {
+    var id = req.params.id.toLowerCase();
+    var name = req.params.name.toLowerCase();
+    var path = id + '/' + name;
+
+    var attach = await attachModel.findOne({
+        where: {
+            path: path
+        }
+    });
+    if (attach === null) {
+        res.sendStatus(404);
+    }
+    else {
+        res.contentType(attach.type);
+        res.end(attach.data);
     }
 });
 

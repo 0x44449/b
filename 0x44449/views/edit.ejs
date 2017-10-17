@@ -61,6 +61,21 @@
                         <textarea name="editor" id="editor" autofocus><%= post.contents %></textarea>
                     </div>
                 </div>
+
+                <div class="write-attach-box">
+                    <input id="btn-file-select" type="file" multiple="multiple" accept="image/*" />
+                    <input id="btn-file-upload" type="button" value="upload" />
+                    <div id="attach-list" class="write-attach-wrap">
+                        <% attaches.forEach(function(attach) { %>
+                        <div class="write-attach-v">
+                            <div class="write-attach-delete-wrap">
+                                <div class="write-attach-delete" data-path="<%= attach.path %>">Ｘ</div>
+                            </div>
+                            <img src="/attach/<%= attach.path %>" style="height: 80px; width: 80px;" draggable="true" ondragstart="onAttachDragStart(event)" />
+                        </div>
+                        <% }); %>
+                    </div>
+                </div>
             </div>
         </div>
         <%- include('partial/right') %>

@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var config = require('config');
+var multer = require('multer');
 
 var database = require('./models/database');
 var pageRoutes = require('./routes/page');

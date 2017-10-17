@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="box" style="width: 65px;">
-            <div class="site-item-wrap">
+            <div id="btn-site-item" class="site-item-wrap">
                 <div class="site-item-bar"></div>
                 <div class="site-item-bar"></div>
                 <div class="site-item-bar"></div>
@@ -23,3 +23,26 @@
         </div>
     </div>
 </div>
+<% if (admin) { %>
+<div id="site-item-menu-overlay" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.01);"></div>
+<div id="site-item-menu" style="display: none; position: fixed; top: 65px; right: 0;">
+    <div>
+        <div>
+            <a href="/write">write</a>
+        </div>
+        <div>
+            <a href="/logout">logout</a>
+        </div>
+    </div>
+</div>
+<script>
+    $('#btn-site-item').click(function(e) {
+        $('#site-item-menu-overlay').show();
+        $('#site-item-menu').show();
+    });
+    $('#site-item-menu-overlay').click(function(e) {
+        $('#site-item-menu-overlay').hide();
+        $('#site-item-menu').hide();
+    });
+</script>
+<% } %>

@@ -29,7 +29,7 @@ a {
 /*layout*/
 .lay-box-center {
     margin: 0 auto;
-    max-width: 1600px;
+    max-width: 1750px;
 }
 
 /*top-start*/
@@ -157,10 +157,10 @@ a {
 
 .lay_contents {
     margin: 20px auto;
-    max-width: 800px;
+    max-width: 1600px;
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 2000px) {
     .contents-flex-box {
         flex-direction: column;
     }
